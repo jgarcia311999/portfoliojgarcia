@@ -59,18 +59,39 @@ export function Portfolio({ locale }: { locale: Locale }) {
     const track = trackRef.current;
     if (!section || !viewport || !track) return;
 
+    let snapTimer: ReturnType<typeof setTimeout>;
+
+    const applyTransform = (activeFloat: number) => {
+      const firstCard = track.firstElementChild as HTMLElement | null;
+      const cardWidth = firstCard ? firstCard.offsetWidth : 460;
+      const gap = 24;
+      const cardSpan = cardWidth + gap;
+      const centerOffset = viewport.clientWidth / 2 - cardWidth / 2;
+      track.style.transform = `translateX(${centerOffset - activeFloat * cardSpan}px)`;
+    };
+
+    const scrollTo = (index: number) => {
+      const clamped = Math.max(0, Math.min(projects.length - 1, index));
+      const scrollable = section.scrollHeight - window.innerHeight;
+      const progress = projects.length > 1 ? clamped / (projects.length - 1) : 0;
+      window.scrollTo({ top: section.offsetTop + scrollable * progress, behavior: "smooth" });
+    };
+
     const onScroll = () => {
       const rect = section.getBoundingClientRect();
       const scrollable = section.scrollHeight - window.innerHeight;
-      const nextProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
-      const nextActiveIndex = nextProgress * (projects.length - 1);
-      const cardSpan = 440;
-      const centerOffset = viewport.clientWidth / 2 - 210;
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollable));
+      const nextFloat = progress * (projects.length - 1);
 
-      track.style.transform = `translateX(${centerOffset - nextActiveIndex * cardSpan}px)`;
-      setActiveIndexFloat(nextActiveIndex);
-      const idx = Math.round(nextProgress * (projects.length - 1));
-      setCurrent(idx + 1);
+      applyTransform(nextFloat);
+      setActiveIndexFloat(nextFloat);
+      setCurrent(Math.round(nextFloat) + 1);
+
+      // Snap to nearest card when scroll stops
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(() => {
+        scrollTo(Math.round(nextFloat));
+      }, 120);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -79,6 +100,7 @@ export function Portfolio({ locale }: { locale: Locale }) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      clearTimeout(snapTimer);
     };
   }, [projects.length]);
 
@@ -92,27 +114,20 @@ export function Portfolio({ locale }: { locale: Locale }) {
   const jumpTo = (index: number) => {
     const section = sectionRef.current;
     if (!section) return;
-
     const clamped = Math.max(0, Math.min(projects.length - 1, index));
     const scrollable = section.scrollHeight - window.innerHeight;
     const progress = projects.length > 1 ? clamped / (projects.length - 1) : 0;
-    const top = section.offsetTop + scrollable * progress;
-    window.scrollTo({ top, behavior: "smooth" });
+    window.scrollTo({ top: section.offsetTop + scrollable * progress, behavior: "smooth" });
   };
 
-  const getCardStyle = (index: number) => {
-    const delta = index - activeIndexFloat;
-    const abs = Math.abs(delta);
-    const translateY = Math.min(abs * 18, 56);
-    const scale = Math.max(0.8, 1.08 - abs * 0.15);
-    const opacity = Math.max(0.22, 1 - abs * 0.24);
-    const blur = Math.min(abs * 1.4, 4.8);
-
+  const getCardStyle = (index: number): React.CSSProperties => {
+    const delta = Math.abs(index - activeIndexFloat);
+    const scale = Math.max(0.82, 1 - delta * 0.14);
+    const opacity = Math.max(0.38, 1 - delta * 0.3);
     return {
-      transform: `translateY(${translateY}px) scale(${scale})`,
+      transform: `scale(${scale})`,
       opacity,
-      filter: `blur(${blur}px)`,
-      zIndex: Math.max(1, projects.length - Math.round(abs * 2)),
+      zIndex: Math.max(1, projects.length - Math.round(delta * 2)),
     };
   };
 
