@@ -1,0 +1,11 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#F7FBF8"/>
+  <rect x="52" y="52" width="1296" height="796" rx="42" fill="#EAF7F1"/>
+  <rect x="112" y="112" width="1176" height="120" rx="32" fill="#FFFFFF"/>
+  <rect x="112" y="278" width="360" height="460" rx="34" fill="#FFFFFF"/>
+  <rect x="504" y="278" width="784" height="220" rx="34" fill="#C7F36B"/>
+  <rect x="504" y="518" width="380" height="220" rx="34" fill="#1F7A6B"/>
+  <rect x="908" y="518" width="380" height="220" rx="34" fill="#DDF2E7"/>
+  <text x="112" y="820" fill="#1F7A6B" font-family="Arial, sans-serif" font-size="34" font-weight="700">Portfolio anterior</text>
+  <text x="112" y="858" fill="#31504A" font-family="Arial, sans-serif" font-size="24">placeholder visual / archivo de proyectos y recorrido</text>
+</svg>

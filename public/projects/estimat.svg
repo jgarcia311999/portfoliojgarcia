@@ -1,0 +1,20 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#FFF9FB"/>
+  <rect x="52" y="52" width="1296" height="796" rx="42" fill="url(#bg)"/>
+  <rect x="112" y="126" width="202" height="34" rx="17" fill="rgba(255,255,255,0.5)"/>
+  <rect x="112" y="210" width="510" height="98" rx="28" fill="rgba(255,255,255,0.92)"/>
+  <rect x="112" y="344" width="380" height="24" rx="12" fill="rgba(255,255,255,0.54)"/>
+  <rect x="112" y="384" width="342" height="24" rx="12" fill="rgba(255,255,255,0.36)"/>
+  <circle cx="976" cy="322" r="132" fill="#FFFFFF"/>
+  <path d="M976 394C942 360 876 320 876 262C876 216 914 186 956 186C984 186 1008 200 1022 222C1036 200 1060 186 1088 186C1130 186 1168 216 1168 262C1168 320 1102 360 1068 394L1022 438L976 394Z" fill="#F4B7D1"/>
+  <rect x="812" y="500" width="328" height="166" rx="30" fill="rgba(255,255,255,0.3)"/>
+  <text x="112" y="706" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="34" font-weight="700">Estima't</text>
+  <text x="112" y="752" fill="rgba(255,255,255,0.78)" font-family="Arial, sans-serif" font-size="24">placeholder visual / asociación y narrativa accesible</text>
+  <defs>
+    <linearGradient id="bg" x1="74" y1="84" x2="1286" y2="818" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5E1DE6"/>
+      <stop offset="0.45" stop-color="#A572F6"/>
+      <stop offset="1" stop-color="#F4B7D1"/>
+    </linearGradient>
+  </defs>
+</svg>

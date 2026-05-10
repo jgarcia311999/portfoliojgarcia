@@ -1,0 +1,22 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#F4FBF8"/>
+  <rect x="52" y="52" width="1296" height="796" rx="42" fill="url(#bg)"/>
+  <rect x="112" y="116" width="216" height="38" rx="19" fill="rgba(255,255,255,0.5)"/>
+  <rect x="112" y="204" width="612" height="118" rx="28" fill="rgba(255,255,255,0.92)"/>
+  <rect x="112" y="356" width="392" height="24" rx="12" fill="rgba(255,255,255,0.54)"/>
+  <rect x="112" y="398" width="346" height="24" rx="12" fill="rgba(255,255,255,0.34)"/>
+  <rect x="784" y="166" width="448" height="520" rx="40" fill="rgba(255,255,255,0.16)"/>
+  <rect x="832" y="218" width="352" height="92" rx="28" fill="rgba(255,255,255,0.8)"/>
+  <rect x="832" y="340" width="352" height="240" rx="28" fill="rgba(199,243,107,0.6)"/>
+  <circle cx="954" cy="460" r="56" fill="#1F7A6B"/>
+  <circle cx="1060" cy="460" r="56" fill="#D6F7A7"/>
+  <circle cx="1008" cy="552" r="56" fill="#FFFFFF"/>
+  <text x="112" y="708" fill="white" font-family="Arial, sans-serif" font-size="34" font-weight="700">Fiestas Matet</text>
+  <text x="112" y="754" fill="rgba(255,255,255,0.74)" font-family="Arial, sans-serif" font-size="24">placeholder visual / agenda y consulta de fiestas</text>
+  <defs>
+    <linearGradient id="bg" x1="76" y1="90" x2="1292" y2="808" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F7A6B"/>
+      <stop offset="1" stop-color="#C7F36B"/>
+    </linearGradient>
+  </defs>
+</svg>

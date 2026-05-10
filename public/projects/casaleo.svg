@@ -1,0 +1,14 @@
+<svg width="1400" height="900" viewBox="0 0 1400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="900" fill="#F6FBFA"/>
+  <rect x="52" y="52" width="1296" height="796" rx="42" fill="#0F1720"/>
+  <rect x="112" y="126" width="248" height="36" rx="18" fill="#2F8F80"/>
+  <rect x="112" y="214" width="516" height="104" rx="28" fill="#F4FBF8"/>
+  <rect x="112" y="352" width="366" height="24" rx="12" fill="#4A625D"/>
+  <rect x="112" y="394" width="322" height="24" rx="12" fill="#3A4F4B"/>
+  <rect x="730" y="152" width="548" height="602" rx="42" fill="#18252E"/>
+  <rect x="788" y="208" width="180" height="420" rx="30" fill="#FFFFFF"/>
+  <rect x="1016" y="208" width="204" height="138" rx="26" fill="#C7F36B"/>
+  <rect x="1016" y="370" width="204" height="258" rx="26" fill="#1F7A6B"/>
+  <text x="112" y="706" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="34" font-weight="700">Casaleo</text>
+  <text x="112" y="752" fill="#AABCB7" font-family="Arial, sans-serif" font-size="24">placeholder visual / app web y gestión</text>
+</svg>

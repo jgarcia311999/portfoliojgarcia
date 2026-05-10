@@ -1,0 +1,18 @@
+<svg width="1200" height="1400" viewBox="0 0 1200 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1400" fill="#0F1720"/>
+  <rect x="72" y="72" width="1056" height="1256" rx="42" fill="url(#bg)"/>
+  <circle cx="600" cy="420" r="178" fill="#FFFFFF" fill-opacity="0.22"/>
+  <rect x="328" y="670" width="544" height="54" rx="27" fill="rgba(255,255,255,0.85)"/>
+  <rect x="260" y="756" width="680" height="28" rx="14" fill="rgba(255,255,255,0.54)"/>
+  <rect x="306" y="810" width="588" height="28" rx="14" fill="rgba(255,255,255,0.36)"/>
+  <rect x="314" y="976" width="572" height="196" rx="32" fill="rgba(255,255,255,0.14)"/>
+  <text x="126" y="152" fill="white" font-family="Arial, sans-serif" font-size="30" font-weight="700">jgarcia3199</text>
+  <text x="126" y="1230" fill="rgba(255,255,255,0.72)" font-family="Arial, sans-serif" font-size="26">placeholder visual / perfil creativo + builder</text>
+  <defs>
+    <linearGradient id="bg" x1="86" y1="96" x2="1098" y2="1296" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F7A6B"/>
+      <stop offset="0.5" stop-color="#315C7C"/>
+      <stop offset="1" stop-color="#5E1DE6"/>
+    </linearGradient>
+  </defs>
+</svg>

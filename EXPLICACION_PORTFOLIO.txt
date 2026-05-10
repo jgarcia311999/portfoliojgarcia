@@ -1,0 +1,552 @@
+EXPLICACION DEL PROYECTO PORTFOLIO2
+==================================
+
+Este documento resume los archivos principales del proyecto, que hace cada uno
+y que se ha cambiado en ellos para llevar la web desde una base inspirada en
+montone.studio hacia una version mas personal para jgarcia3199.
+
+
+1. ESTRUCTURA GENERAL
+=====================
+
+El proyecto esta hecho con Next.js usando App Router.
+
+Archivos base:
+- app/layout.tsx
+- app/page.tsx
+- app/globals.css
+
+Componentes principales:
+- app/components/Navbar.tsx
+- app/components/Cursor.tsx
+- app/components/Hero.tsx
+- app/components/Statement.tsx
+- app/components/Services.tsx
+- app/components/Portfolio.tsx
+- app/components/Testimonials.tsx
+- app/components/About.tsx
+- app/components/Footer.tsx
+
+
+2. ARCHIVOS BASE
+================
+
+2.1 app/layout.tsx
+------------------
+Que hace:
+- Define la estructura HTML global de toda la app.
+- Carga las fuentes Geist y Geist Mono.
+- Importa los estilos globales.
+- Define el metadata principal de la pagina.
+
+Que se cambio:
+- Se actualizo el metadata para que el titulo y la descripcion reflejen el
+  portfolio de jgarcia3199.
+- Se elimino el overflow-hidden del body. Antes bloqueaba o complicaba el
+  scroll general de la pagina, y esta web depende mucho del scroll.
+
+
+2.2 app/page.tsx
+----------------
+Que hace:
+- Es la pagina principal.
+- Monta todos los componentes en orden.
+- Inicializa Lenis para el smooth scroll.
+- Activa las animaciones fade-up con IntersectionObserver.
+
+Que se cambio:
+- Se mantuvo como orquestador principal de la home.
+- No se reestructuro en exceso, porque ya cumplia bien el papel de ensamblar
+  la narrativa de la pagina.
+- Ahora tambien controla el idioma activo de la web:
+  - espanol
+  - valenciano
+- Guarda el idioma elegido en localStorage y lo pasa a los componentes.
+
+
+2.3 app/globals.css
+-------------------
+Que hace:
+- Contiene casi toda la identidad visual del proyecto.
+- Define variables CSS, fondos, tipografia, espaciados, animaciones y estilos
+  de cada bloque de la home.
+- Controla navbar, overlay menu, hero, statement, cards, carruseles, footer,
+  responsive y sistema de paletas.
+
+Que se cambio:
+- Se reescribio casi por completo.
+- Se creo una identidad visual inspirada en la referencia pero mas propia.
+- Se implemento el sistema de variables de color para temas.
+- Se dejaron finalmente dos temas activos:
+  1. neo-mint
+  2. lapreviapp
+- Se adapto el glow del cursor para reaccionar al tema.
+- Se ajustaron las transiciones entre secciones para dar mas continuidad.
+- Se corrigio el layout de las cards de servicios:
+  - mas separacion entre numero y titulo
+  - grid mas amplia
+  - offset mas coherente
+- Se arreglo la zona del carrusel horizontal de proyectos:
+  - viewport real
+  - cards con preview embebido
+- Se adapto la zona de stack/herramientas:
+  - carrusel vertical mas controlable
+- Se mejoro el selector visual de paletas en el menu.
+
+
+3. COMPONENTES
+==============
+
+3.1 app/components/Navbar.tsx
+-----------------------------
+Que hace:
+- Renderiza la barra superior fija.
+- Muestra el logo jgarcia3199/.
+- Abre y cierra el menu overlay.
+- Oculta la navbar al hacer scroll hacia abajo y la vuelve a mostrar al subir.
+- Incluye el selector de paletas dentro del menu.
+
+Que se cambio:
+- Antes mostraba la marca heredada de montone. Ahora muestra jgarcia3199/.
+- Se tradujo al espanol el contenido del menu.
+- Se redujo el selector de paletas a solo dos:
+  - Neo Mint
+  - La Previapp
+- Se implemento persistencia del tema con localStorage.
+- Se aplica el tema guardado a document.documentElement mediante data-theme.
+- Se limpio el codigo para cumplir con lint y evitar setState dentro de un
+  effect de forma incorrecta.
+- Se anadio tambien un selector de idioma dentro del menu:
+  - ES
+  - VA
+
+
+3.2 app/components/Cursor.tsx
+-----------------------------
+Que hace:
+- Renderiza el glow que sigue el movimiento del raton.
+- Su posicion se anima con requestAnimationFrame para ir con suavidad.
+
+Que se cambio:
+- Se simplifico para usar la clase global cursor-glow en lugar de llevar
+  todos los estilos inline.
+- Ahora su color depende del tema activo gracias a variables CSS.
+
+
+3.3 app/components/Hero.tsx
+---------------------------
+Que hace:
+- Renderiza la primera pantalla.
+- Muestra el wordmark principal abajo a la izquierda.
+- Cambia dinamicamente la segunda palabra del logo.
+- Hace un leve scale/fade con el scroll.
+
+Que se cambio:
+- Se sustituyo el branding original por:
+  jgarcia3199/...
+- Se cambiaron las palabras rotatorias por conceptos tuyos:
+  portfolio, apps, web, info, curriculum, design, ai
+- Se tradujo el hint de scroll a "Explorar".
+- Se hizo el hero mas austero para parecerse a la referencia, pero con tu
+  contenido.
+
+
+3.4 app/components/Statement.tsx
+--------------------------------
+Que hace:
+- Es la seccion grande de color con texto que se va revelando al hacer scroll.
+- Debajo del texto muestra la banda de "Stack habitual".
+
+Que se cambio:
+- Se tradujo todo al espanol.
+- Se rehizo el mensaje para que encaje con tu perfil:
+  frontend, diseno, producto, apps, automatizacion e IA.
+- El ticker de "Stack habitual" ya no usa una animacion CSS fija simple.
+  Ahora se mueve con requestAnimationFrame y reseteo continuo para que sea
+  realmente infinito y mas suave.
+- Se cambian los items del ticker a herramientas y tecnologias mas tuyas:
+  TypeScript, Angular, Ionic, Figma, Node.js, Symfony, Docker, UX/UI, IA.
+
+
+3.5 app/components/Services.tsx
+-------------------------------
+Que hace:
+- Muestra las cards apiladas de servicios.
+- Cada card se queda sticky y se va comprimiendo visualmente cuando aparecen
+  las siguientes.
+
+Que se cambio:
+- Se tradujeron y personalizaron los servicios:
+  UX/UI y direccion visual
+  Frontend y experiencias web
+  Design systems
+  IA y automatizacion
+  Apps propias
+- Se corrigio el comportamiento del amontonamiento:
+  - antes la primera card se comportaba de forma distinta
+  - ahora cada card usa su propio stickyTop para calcular el overlap
+- Se mejoro la composicion visual separando mas el numero del titulo.
+
+
+3.6 app/components/Portfolio.tsx
+--------------------------------
+Que hace:
+- Renderiza la seccion de proyectos horizontal.
+- Tiene contador actual, flechas, barra de progreso y cards enlazadas.
+- El desplazamiento horizontal depende del scroll vertical de la pagina.
+
+Que se cambio:
+- Se rehizo con tus proyectos reales:
+  Lapreviapp
+  Fiestas Matet
+  Strago Chonin
+  Casaleo
+  Estima't
+  Portfolio anterior
+- Se corrigio el bug principal del carrusel horizontal:
+  antes el ancho se media mal y no se desplazaba de forma correcta.
+  Ahora calcula contra un viewport real usando viewportRef.
+- Se anadieron previews de cada proyecto dentro de las cards usando iframe.
+- Ahora cada proyecto tiene un placeholder visual propio en public/projects.
+- Se ha preparado un fallback real:
+  - si existe imagen/captura, se muestra esa imagen
+  - si falla o no existe, se usa el preview web embebido
+- El modal de proyecto ahora muestra tambien una preview visual superior,
+  ademas de resumen, problema, rol, tecnologias y boton para abrir el sitio.
+- Se mantienen los enlaces reales para abrir los sitios al hacer click.
+- Se conservaron las flechas para navegar entre posiciones del carrusel.
+
+Nota:
+- Los previews via iframe dependen de que cada web permita ser embebida.
+  Si alguna pagina bloquea iframes por cabeceras del servidor, ese preview
+  puede no renderizarse. En ese caso, la alternativa correcta seria pasar a
+  previews estaticos tipo screenshot.
+
+
+3.7 app/components/Testimonials.tsx
+-----------------------------------
+Que hace:
+- Ya no son testimonios reales.
+- Ahora funciona como seccion de stack y herramientas.
+- Muestra tarjetas verticales en movimiento automatico.
+- Se puede intervenir con la rueda del raton cuando haces scroll encima.
+
+Que se cambio:
+- Se elimino la version con testimonios falsos.
+- Se sustituyo por bloques reales de capacidades:
+  Diseno
+  Frontend
+  Backend
+  Sistemas
+  IA aplicada
+  Apps propias
+- Se reescribio la logica del carrusel vertical:
+  - autoplay continuo
+  - movimiento con requestAnimationFrame
+  - reaccion a la rueda del raton
+  - posibilidad de empujar hacia arriba o hacia abajo
+- Esto hace que la seccion sea mas interactiva y tenga mas sentido narrativo.
+
+
+3.8 app/components/About.tsx
+----------------------------
+Que hace:
+- Presenta una pequena bio personal.
+- Muestra varios enlaces tipo lista editorial.
+- Tiene una preview flotante que sigue al cursor al pasar por esos enlaces.
+
+Que se cambio:
+- Se reescribio el contenido al espanol.
+- Se personalizo la descripcion para que hable de ti:
+  frontend, diseno, producto, apps y uso de IA.
+- Se cambiaron los items de la lista a bloques mas coherentes con tu perfil:
+  perfil, CV, apps, contacto.
+- Se ajusto el contenido del preview flotante para que encaje con el nuevo
+  discurso.
+- Finalmente se elimino el preview flotante y se sustituyo por un panel visual
+  fijo con imagen placeholder, titular y bloque de apoyo.
+
+
+3.9 app/components/Footer.tsx
+-----------------------------
+Que hace:
+- Cierra la pagina con un gran wordmark.
+- Incluye enlaces de navegacion y enlaces sociales/contacto.
+
+Que se cambio:
+- Se sustituyo el branding heredado por:
+  jgarcia3199/portfolio
+- Se adapto el texto legal al espanol.
+- Se anadio GitHub y se dejaron placeholders para LinkedIn y email.
+- Se mantiene visualmente fuerte, con cierre grande y color de tema.
+- Se localizo tambien el bloque principal de contacto para espanol y valenciano.
+
+
+3.10 app/data/content.ts
+------------------------
+Que hace:
+- Centraliza el contenido principal de la web.
+- Guarda textos, proyectos, servicios, stack, about y footer.
+- Se usa como capa de contenido para soportar mas de un idioma.
+
+Que se cambio:
+- Se creo este archivo para evitar tener todos los textos metidos dentro de
+  los componentes.
+- Se anadieron dos idiomas:
+  - es
+  - va
+- Se estructuro el portfolio con datos mas ricos:
+  - proyectos
+  - textos de modales
+  - chips del hero
+  - textos del footer
+- Se anadieron rutas de placeholders para proyectos e imagen de about.
+
+
+4. OTROS ARCHIVOS DEL PROYECTO
+==============================
+
+4.1 package.json
+----------------
+Que hace:
+- Define dependencias, scripts y metadata del proyecto.
+
+Uso en este proyecto:
+- next, react, react-dom
+- lenis para scroll suave
+- eslint y typescript
+
+Que se cambio:
+- Durante el proceso se ajustaron dependencias del proyecto conforme se fueron
+  haciendo cambios, especialmente en lockfile si npm recalculo versiones.
+
+
+4.2 package-lock.json
+---------------------
+Que hace:
+- Bloquea versiones exactas de dependencias instaladas.
+
+Que se cambio:
+- Se actualizo automaticamente al instalar o resolver dependencias.
+- No es un archivo de logica, pero cambia cuando el entorno npm recalcula el
+  arbol de paquetes.
+
+
+4.3 next.config.ts
+------------------
+Que hace:
+- Archivo de configuracion de Next.js.
+
+Estado actual:
+- Minimal, practicamente sin personalizacion.
+
+
+4.4 tsconfig.json
+-----------------
+Que hace:
+- Configura TypeScript.
+
+Estado actual:
+- Configuracion estandar de un proyecto Next moderno.
+
+
+4.5 eslint.config.mjs
+---------------------
+Que hace:
+- Configura ESLint para revisar calidad y errores del codigo.
+
+Importancia:
+- Ha servido para detectar errores reales de React Hooks y contenido JSX.
+
+
+4.6 public/
+-----------
+Que hace:
+- Contiene assets estaticos del proyecto.
+
+Estado actual:
+- Principalmente archivos del starter de Next.
+- Ahora ya contiene placeholders visuales temporales para no depender solo de
+  bloques vacios o iframes:
+  - public/projects/lapreviapp.svg
+  - public/projects/fiestas-matet.svg
+  - public/projects/strago-chonin.svg
+  - public/projects/casaleo.svg
+  - public/projects/estimat.svg
+  - public/projects/portfolio-anterior.svg
+  - public/about-placeholder.svg
+  - public/og.svg
+- La idea es que mas adelante estas imagenes se sustituyan por capturas o
+  mockups reales tuyos.
+
+
+5. RESUMEN DE CAMBIOS GRANDES
+=============================
+
+Los cambios mas importantes hechos en esta fase han sido:
+
+- Cambiar la identidad de marca a jgarcia3199.
+- Traducir la experiencia al espanol.
+- Personalizar el discurso para frontend + diseno + apps + IA aplicada.
+- Separar visualmente la pagina de la referencia con nuevas paletas.
+- Crear selector de paleta en menu.
+- Dejar solo dos paletas finales:
+  Neo Mint
+  La Previapp
+- Corregir el carrusel horizontal de proyectos.
+- Corregir el amontonamiento de las cards de servicios.
+- Hacer infinito el ticker de Stack habitual.
+- Rehacer la seccion stack/herramientas para que el movimiento automatico se
+  pueda empujar con el scroll.
+- Anadir previews de los proyectos dentro del carrusel.
+
+
+6. MEJORAS FUTURAS RECOMENDADAS
+===============================
+
+- Sustituir iframes de preview por capturas estaticas reales.
+- Cambiar placeholders de enlaces por enlaces finales.
+- Afinar aun mas los textos del about y del hero.
+- Traducir la web al valenciano en una segunda version.
+- Meter imagenes o mockups propios en portfolio.
+- Valorar si la seccion stack/herramientas se quiere dejar asi o convertirla
+  en una composicion aun mas unica.
+
+
+7. ULTIMOS CAMBIOS AÑADIDOS
+===========================
+
+En esta ultima iteracion se han hecho estos cambios adicionales:
+
+- Se ha reducido el selector de paletas del menu a solo dos opciones:
+  - Neo Mint
+  - La Previapp
+
+- Se ha dejado Neo Mint como paleta por defecto.
+
+- Se ha corregido el ticker horizontal de "Stack habitual" para que funcione
+  como desplazamiento continuo e infinito.
+
+- Se ha corregido la seccion de cards de servicios:
+  - la primera card ya no se apila de forma distinta
+  - ahora el numero queda mas separado del titulo
+
+- Se ha rehecho la seccion horizontal de proyectos:
+  - calculo correcto del desplazamiento
+  - Lapreviapp queda como proyecto protagonista
+  - cada proyecto puede abrir un modal
+  - el modal muestra resumen, tecnologias y enlace al proyecto
+
+- Se han añadido previews embebidos en las cards de proyectos.
+
+- Se ha dejado preparado el sistema de preview con fallback:
+  - si un proyecto tiene imagen, usa imagen
+  - si esa imagen no existe o falla, vuelve al iframe de preview
+
+- Se han creado placeholders visuales fake para:
+  - todos los proyectos
+  - la seccion about
+  - la imagen OG del sitio
+
+- Se ha introducido una capa de contenido central en app/data/content.ts para
+  poder mantener mejor la pagina y empezar a preparar la version en valenciano.
+
+- Se ha añadido selector de idioma en el menu y se han localizado los textos
+  principales en espanol y valenciano.
+
+- Se ha localizado tambien el bloque de contacto del footer.
+
+- Se ha corregido un detalle de render en la seccion Statement para que las
+  lineas sin clase opcional no generen la clase literal "undefined" en el HTML.
+
+- Se ha rehecho el hero principal con una direccion mas visual:
+  - imagen placeholder de fondo
+  - capa de vidrio acanalado
+  - brillos y luz que reaccionan al raton
+  - texto adaptado para convivir sobre fondo oscuro
+
+- Despues se ha sustituido el placeholder del hero por:
+  - public/imgportada.jpg
+
+- Tambien se ha afinado el material del vidrio para que se sienta menos
+  tecnico y mas fisico:
+  - menos contraste duro
+  - ribs mas suaves
+  - neblina y reflejos mas cremosos
+  - brillo de raton menos artificial
+  - texto y chips mejor integrados sobre la fotografia real
+
+- Se ha corregido la seccion de proyectos para que vuelva a sentirse
+  horizontal de verdad:
+  - existe un track horizontal real
+  - la card activa se centra
+  - el resto se escalan y pierden foco segun su distancia
+  - el apilado visual ya no usa z-index negativos
+
+- Se ha cambiado la seccion de "stack y herramientas" para que:
+  - tenga autoplay
+  - pueda desplazarse con la rueda del raton
+  - use un scroll interno real del contenedor en lugar de depender solo de
+    transformaciones visuales
+  - se mueva mas lento
+  - se pause al poner el cursor encima para facilitar la lectura
+
+- Se ha añadido una linea secundaria en el hero:
+  "frontend + diseño + apps + IA aplicada"
+
+- Se ha rehecho la seccion about para hacerla mas personal y menos generica.
+
+- Se ha eliminado la preview flotante del about porque no estaba aportando
+  suficiente valor real.
+
+- Se ha corregido el bloque de contacto del footer para forzar una lectura
+  clara sobre fondo oscuro y evitar que el texto se vea negro o apagado.
+
+- La seccion de proyectos ya no funciona como simple track horizontal:
+  - ahora se comporta como un carrusel tipo coverflow
+  - el proyecto activo aparece centrado y mas grande
+  - los proyectos vecinos quedan desplazados y mas pequenos
+  - al avanzar con el scroll, el siguiente proyecto pasa al centro y gana peso
+  - el anterior se reduce y se aparta visualmente
+
+- El modal de proyecto mantiene preview, resumen, problema, rol y tecnologias,
+  pero ahora vive mejor alineado con la nueva logica del carrusel central.
+
+- La seccion about se ha reforzado con una estructura mas clara:
+  - texto principal
+  - panel visual
+  - tarjetas de enfoque
+  Esto ayuda a que no se sienta solo como un bloque de texto con enlaces.
+
+- app/data/content.ts ahora guarda tambien highlights para la seccion about,
+  tanto en espanol como en valenciano, para mantener ese contenido editable
+  sin volver a meterlo dentro del componente.
+
+
+8. NORMA DE DOCUMENTACION
+=========================
+
+A partir de este punto, cada vez que se haga un cambio en el proyecto, se
+anadira tambien al archivo EXPLICACION_PORTFOLIO.txt para que el historial
+funcional del portfolio quede explicado dentro del propio repo.
+
+
+9. AJUSTE REVERTIDO
+===================
+
+Se llego a probar una variante del hero con fotografia real y un vidrio mas
+organico, pero finalmente se deshizo porque no encajaba como se esperaba.
+
+Estado final tras ese cambio:
+- se vuelve al hero con placeholder plano
+- se recupera el tratamiento anterior de vidrio
+- no se usa esa variante mas experimental en la portada
+
+Despues se dio un paso mas atras aun:
+- se elimina tambien el placeholder del hero
+- se quitan las capas de cristal
+- se elimina la reaccion del raton en la portada
+- el hero vuelve a ser plano y limpio, como estaba antes de abrir esa linea visual
+
+
+Fin del documento.
