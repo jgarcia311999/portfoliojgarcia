@@ -88,7 +88,7 @@ const sharedProjects: Omit<ProjectItem, "category" | "shortDescription" | "summa
     technologies: ["React Native", "Expo", "Firebase", "Web", "iOS"],
     href: "https://lapreviapp.com",
     preview: "https://lapreviapp.com",
-    image: "/projects/lapreviapp.svg",
+    image: "/projects/lapreviapp.png",
     featured: true,
   },
   {
@@ -105,7 +105,7 @@ const sharedProjects: Omit<ProjectItem, "category" | "shortDescription" | "summa
     technologies: ["Next.js", "Brand", "Catalogo", "Frontend"],
     href: "https://strago-chonin.vercel.app/",
     preview: "https://strago-chonin.vercel.app/",
-    image: "/projects/strago-chonin.svg",
+    image: "/projects/strago-chonin.png",
   },
   {
     title: "Casaleo",

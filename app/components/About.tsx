@@ -12,7 +12,7 @@ export function About({ locale }: { locale: Locale }) {
       <div className="shell about-grid">
         <div className="fade-up">
           <p className="section-kicker">{content.kicker}</p>
-          <h2 className="section-title">{content.title}</h2>
+          <h2 className="section-title section-title-accent">{content.title}</h2>
           <p className="about-intro">{content.intro}</p>
           <p className="about-meta">{content.meta}</p>
           <p className="about-note">{content.note}</p>

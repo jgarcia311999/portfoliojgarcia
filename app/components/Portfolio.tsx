@@ -27,6 +27,7 @@ function ProjectPreview({
           src={image}
           alt=""
           fill
+          unoptimized
           className="project-thumb-image"
           onError={() => setShowImage(false)}
         />
@@ -59,8 +60,6 @@ export function Portfolio({ locale }: { locale: Locale }) {
     const track = trackRef.current;
     if (!section || !viewport || !track) return;
 
-    let snapTimer: ReturnType<typeof setTimeout>;
-
     const applyTransform = (activeFloat: number) => {
       const firstCard = track.firstElementChild as HTMLElement | null;
       const cardWidth = firstCard ? firstCard.offsetWidth : 460;
@@ -68,13 +67,6 @@ export function Portfolio({ locale }: { locale: Locale }) {
       const cardSpan = cardWidth + gap;
       const centerOffset = viewport.clientWidth / 2 - cardWidth / 2;
       track.style.transform = `translateX(${centerOffset - activeFloat * cardSpan}px)`;
-    };
-
-    const scrollTo = (index: number) => {
-      const clamped = Math.max(0, Math.min(projects.length - 1, index));
-      const scrollable = section.scrollHeight - window.innerHeight;
-      const progress = projects.length > 1 ? clamped / (projects.length - 1) : 0;
-      window.scrollTo({ top: section.offsetTop + scrollable * progress, behavior: "smooth" });
     };
 
     const onScroll = () => {
@@ -86,12 +78,6 @@ export function Portfolio({ locale }: { locale: Locale }) {
       applyTransform(nextFloat);
       setActiveIndexFloat(nextFloat);
       setCurrent(Math.round(nextFloat) + 1);
-
-      // Snap to nearest card when scroll stops
-      clearTimeout(snapTimer);
-      snapTimer = setTimeout(() => {
-        scrollTo(Math.round(nextFloat));
-      }, 120);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -100,7 +86,6 @@ export function Portfolio({ locale }: { locale: Locale }) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      clearTimeout(snapTimer);
     };
   }, [projects.length]);
 

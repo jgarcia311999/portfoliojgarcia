@@ -80,7 +80,7 @@ export function Testimonials({ locale }: { locale: Locale }) {
       <div className="shell testimonials-grid">
         <div className="testi-left fade-up">
           <p className="section-kicker">{content.kicker}</p>
-          <h2 className="section-title">{content.title}</h2>
+          <h2 className="section-title section-title-accent">{content.title}</h2>
           <p className="section-body">{content.body}</p>
         </div>
 

@@ -44,6 +44,11 @@ Que se cambio:
   portfolio de jgarcia3199.
 - Se elimino el overflow-hidden del body. Antes bloqueaba o complicaba el
   scroll general de la pagina, y esta web depende mucho del scroll.
+- Ahora lee cookies de idioma y paleta para pintar desde servidor:
+  - atributo lang correcto
+  - data-theme correcto
+  Esto evita que el HTML inicial salga con una configuracion distinta a la
+  que luego usa el navegador al hidratar.
 
 
 2.2 app/page.tsx
@@ -55,13 +60,13 @@ Que hace:
 - Activa las animaciones fade-up con IntersectionObserver.
 
 Que se cambio:
-- Se mantuvo como orquestador principal de la home.
-- No se reestructuro en exceso, porque ya cumplia bien el papel de ensamblar
-  la narrativa de la pagina.
-- Ahora tambien controla el idioma activo de la web:
-  - espanol
-  - valenciano
-- Guarda el idioma elegido en localStorage y lo pasa a los componentes.
+- Ahora es un Server Component muy fino.
+- Lee cookies de preferencia:
+  - idioma
+  - paleta
+- Pasa esos valores iniciales ya resueltos a HomeClient.
+- Esta separacion evita hydration mismatch porque el servidor y el cliente
+  parten de la misma informacion.
 
 
 2.3 app/globals.css
@@ -114,11 +119,30 @@ Que se cambio:
   - La Previapp
 - Se implemento persistencia del tema con localStorage.
 - Se aplica el tema guardado a document.documentElement mediante data-theme.
-- Se limpio el codigo para cumplir con lint y evitar setState dentro de un
-  effect de forma incorrecta.
+- Ahora recibe initialTheme desde el servidor.
+- Guarda la paleta elegida tanto en localStorage como en cookie.
+- Ya no decide el tema inicial leyendo almacenamiento del navegador en mitad
+  de la hidratacion, que era lo que estaba provocando el warning.
 - Se anadio tambien un selector de idioma dentro del menu:
   - ES
   - VA
+
+
+3.1.1 app/components/HomeClient.tsx
+-----------------------------------
+Que hace:
+- Es la version cliente de la home.
+- Inicializa Lenis.
+- Activa los fade-up con IntersectionObserver.
+- Gestiona el idioma activo una vez la pagina ya esta hidratada.
+- Monta Navbar, Hero, Statement, Services, Portfolio, Stack, About y Footer.
+
+Que se cambio:
+- Se extrajo desde app/page.tsx para separar mejor servidor y cliente.
+- Recibe initialLocale e initialTheme desde el servidor.
+- Guarda el idioma tanto en localStorage como en cookie.
+- Mantiene toda la parte interactiva sin forzar a que la pagina completa tenga
+  que decidir cosas sensibles durante el primer render.
 
 
 3.2 app/components/Cursor.tsx
@@ -547,6 +571,153 @@ Despues se dio un paso mas atras aun:
 - se quitan las capas de cristal
 - se elimina la reaccion del raton en la portada
 - el hero vuelve a ser plano y limpio, como estaba antes de abrir esa linea visual
+
+
+10. BUG CORREGIDO
+=================
+
+Se detecto un bug en la seccion de proyectos:
+- al entrar en la web podia llevar directamente a "/proyectos que ya estan fuera"
+- al dejar de mover el scroll podia volver a empujar hacia esa seccion
+
+Causa:
+- el carrusel de proyectos tenia un snap automatico que hacia window.scrollTo
+  hacia la card mas cercana cada vez que el scroll se paraba
+
+Solucion:
+- se ha eliminado ese snap automatico
+- el carrusel sigue respondiendo al scroll, pero ya no secuestra la posicion
+  de la pagina por su cuenta
+
+
+11. NUEVA PALETA
+================
+
+La web se ha quedado con una unica identidad activa:
+- Electric Blue
+
+Color base:
+- #1537FF
+
+Que cambia:
+- brand principal
+- gradientes de fondo
+- color del statement
+- glow
+- footer
+- acentos principales de seccion
+- detalles del menu
+
+Ademas:
+- se eliminan del selector las demas paletas
+- las preferencias antiguas ya no mandan sobre el resultado
+- si habia una paleta vieja guardada, la web vuelve igualmente a Electric Blue
+
+
+12. AJUSTE DE COLOR LOCAL
+=========================
+
+Se ha aplicado un color de acento a elementos concretos:
+- titulos de las cards de servicios
+- numeros grandes de esas cards, en una version mas suave
+- titulo principal de la seccion de proyectos
+- titulo "con que suelo trabajar."
+- titulo "una forma de construir."
+
+Este ajuste ahora sigue la unica paleta activa del proyecto.
+
+Variables nuevas:
+- --accent-strong
+- --accent-soft
+
+Comportamiento actual:
+- Electric Blue: usa el azul #2F51FE y su variante suave
+
+Para que el cambio fuese completamente fiable, estos dos titulos ya no dependen
+solo del contexto CSS de la seccion. Ahora usan una clase dedicada:
+- section-title-accent
+
+
+14. BOTON DE PALETA
+===================
+
+El boton de paleta del menu ya no cambia de tema.
+
+Ahora hace esto:
+- cerrado, se ve como una capsula minima con el nombre de la paleta y los tonos
+- al pulsarlo, se expande en un panel mas limpio y mas editorial
+- la ficha explica que colores se usan
+- tambien indica en que zonas vive cada tono
+
+Animaciones:
+- apertura y cierre con escala suave
+- cambio de opacidad
+- leve desplazamiento
+- entrada escalonada de cada fila de color
+
+Colocacion en menu:
+- sistema de color e idioma ya no quedan dentro del flujo principal del overlay
+- ahora se fijan arriba a la derecha
+- aparecen justo debajo de "Cerrar menu"
+- asi siguen accesibles aunque el menu principal no haga scroll
+- la parte izquierda del menu se mantiene arriba en lugar de quedar centrada
+- la parte derecha se trata como un segundo menu:
+  - queda debajo de "Cerrar menu"
+  - alineada con ese borde derecho
+  - separada del bloque grande de navegacion de la izquierda
+- todos los elementos de esa columna se alinean a la derecha:
+  - labels
+  - capsula de color
+  - panel expandido
+  - selector de idioma
+- el panel de detalle se simplifico visualmente:
+  - sin puntos decorativos a la izquierda
+  - sin separadores horizontales entre filas
+  - con el contenido textual alineado a la derecha
+  - sin repetir "Electric Blue" ni "Paleta activa del portfolio" dentro del
+    panel abierto
+- al abrir la ficha, el panel ya no se superpone con idioma porque ocupa su
+  propio espacio dentro de esa columna
+- la ficha de color se abre por hover sobre el bloque de color y se mantiene
+  abierta mientras el cursor siga dentro de la columna derecha
+- la ficha usa tambien sus textos localizados al cambiar de idioma
+- la sombra del panel abierto ya no usa un recorte rectangular duro; ahora se
+  apoya en una sombra mas organica que acompana mejor el borde redondeado
+
+En esta fase, las previews locales de proyectos se renderizan con:
+- next/image
+- unoptimized en las miniaturas
+
+Motivo:
+- evita problemas de cache y restricciones nuevas de Next 16 con query strings
+  locales en imagenes del propio proyecto
+- hace mas predecible el cambio de capturas mientras se esta iterando visualmente
+
+
+13. HYDRATION MISMATCH
+======================
+
+Se ha corregido un hydration mismatch en la navbar.
+
+Causa:
+- el servidor renderizaba una paleta e idioma por defecto
+- el cliente podia leer otros valores desde localStorage al hidratar
+- React detectaba diferencias en la clase activa del selector de paletas
+- ademas, app/page.tsx hacia un branch con typeof window para el idioma
+
+Solucion:
+- Se creo app/lib/preferences.ts para centralizar:
+  - claves de cookies y localStorage
+  - valores por defecto
+  - parseo seguro de idioma y paleta
+- app/layout.tsx ahora lee cookies y pinta lang y data-theme desde servidor
+- app/page.tsx lee cookies y pasa initialLocale e initialTheme a HomeClient
+- HomeClient y Navbar guardan los cambios en cookie y localStorage
+- asi servidor y cliente arrancan ya alineados y desaparece el mismatch real
+
+Nota:
+- El atributo cz-shortcut-listen que podia aparecer en body viene de una
+  extension del navegador, no del codigo del proyecto.
 
 
 Fin del documento.
