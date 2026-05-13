@@ -321,8 +321,10 @@ section:not(.hero) {
 .palette-trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
   min-height: 44px;
+  width: 100%;
   padding: 8px 10px 8px 14px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
@@ -356,6 +358,7 @@ section:not(.hero) {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: right;
 }
 
 .palette-swatches {
@@ -405,43 +408,8 @@ section:not(.hero) {
   filter: drop-shadow(0 20px 34px rgba(8, 18, 56, 0.18));
 }
 
-.palette-panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
-}
-
-.palette-panel-label {
-  color: rgba(255, 255, 255, 0.52);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: right;
-}
-
-.palette-panel-title {
-  margin-top: 8px;
-  color: var(--white);
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 1.02;
-  letter-spacing: var(--ls-tight);
-  text-align: right;
-}
-
-.palette-panel-note {
-  margin-top: 10px;
-  max-width: 22rem;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 14px;
-  line-height: 1.45;
-  text-align: right;
-}
-
 .palette-panel-list {
-  margin-top: 18px;
+  margin-top: 4px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

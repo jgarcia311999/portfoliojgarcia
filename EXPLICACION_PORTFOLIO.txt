@@ -676,6 +676,7 @@ Colocacion en menu:
   - con el contenido textual alineado a la derecha
   - sin repetir "Electric Blue" ni "Paleta activa del portfolio" dentro del
     panel abierto
+  - sin repetir tampoco "Sistema de color" dentro del panel abierto
 - al abrir la ficha, el panel ya no se superpone con idioma porque ocupa su
   propio espacio dentro de esa columna
 - la ficha de color se abre por hover sobre el bloque de color y se mantiene

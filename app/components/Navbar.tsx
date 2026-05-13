@@ -129,12 +129,6 @@ export function Navbar({
 
             <div className="palette-panel">
               <div className="palette-panel-inner">
-                <div className="palette-panel-head">
-                  <div>
-                    <p className="palette-panel-label">{paletteLabel}</p>
-                  </div>
-                </div>
-
                 <div className="palette-panel-list">
                   {PALETTE_CARD.swatches.map((item, index) => (
                     <article
