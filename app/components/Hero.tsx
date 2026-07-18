@@ -46,9 +46,8 @@ export function Hero({ locale }: { locale: Locale }) {
       const rect = section.getBoundingClientRect();
       const scrollable = section.scrollHeight - window.innerHeight;
       const p = Math.max(0, Math.min(1, -rect.top / scrollable));
-      const isMobile = window.innerWidth <= 900;
-      const fadeP = Math.max(0, Math.min(1, p / (isMobile ? 0.2 : 0.18)));
-      const zoomP = Math.max(0, Math.min(1, p / (isMobile ? 0.72 : 0.74)));
+      const fadeP = Math.max(0, Math.min(1, p / 0.18));
+      const zoomP = Math.max(0, Math.min(1, p / 0.5));
       const easedZoom = 1 - Math.pow(1 - zoomP, 3);
       section.style.setProperty("--hero-fade", fadeP.toFixed(4));
       el.style.transform = `scale(${1 - p * 0.08})`;
@@ -65,7 +64,7 @@ export function Hero({ locale }: { locale: Locale }) {
       }
 
       if (portraitRef.current) {
-        const endScale = isMobile ? 0.56 : 0.6;
+        const endScale = window.innerWidth <= 900 ? 0.38 : 0.38;
         const scale = 1 - easedZoom * (1 - endScale);
         const radius = easedZoom * 22;
         portraitRef.current.style.transform = `scale(${scale.toFixed(4)})`;
@@ -73,10 +72,10 @@ export function Hero({ locale }: { locale: Locale }) {
       }
 
       if (signatureRef.current) {
-        const signatureP = Math.max(0, Math.min(1, (zoomP - 0.54) / 0.28));
+        const signatureP = Math.max(0, Math.min(1, (p - 0.4) / 0.6));
         signatureRef.current.style.opacity = String(signatureP);
+        signatureRef.current.style.transform = `rotate(-8deg) scale(${0.82 + signatureP * 1.3})`;
         signatureRef.current.style.clipPath = `inset(0 ${Math.max(0, 100 - signatureP * 100)}% 0 0)`;
-        signatureRef.current.style.transform = `rotate(-8deg) scale(${0.82 + signatureP * 0.08})`;
       }
     };
 
@@ -107,7 +106,7 @@ export function Hero({ locale }: { locale: Locale }) {
           </div>
           <div ref={portraitRef} className="hero-zoom-card">
             <Image
-              src="/fotofondo2.png"
+              src="/fotofondo4.png"
               alt=""
               width={648}
               height={1152}
@@ -115,7 +114,9 @@ export function Hero({ locale }: { locale: Locale }) {
               className="hero-zoom-image"
             />
           </div>
-          <div ref={signatureRef} className="hero-zoom-signature" />
+          <div ref={signatureRef} className="hero-zoom-signature-wrap">
+            <div className="hero-zoom-signature" />
+          </div>
         </div>
         <div ref={contentRef} className="hero-content-wrap">
           <div className="hero-bottom">
