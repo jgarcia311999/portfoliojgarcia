@@ -97,7 +97,7 @@ const sharedProjects: Omit<ProjectItem, "category" | "shortDescription" | "summa
     technologies: ["Next.js", "TypeScript", "Vercel"],
     href: "https://fiestasmatet.vercel.app",
     preview: "https://fiestasmatet.vercel.app",
-    image: "/projects/fiestas-matet.svg",
+    image: "/projects/fiestas-matet.png",
   },
   {
     title: "Strago Chonin",
@@ -110,10 +110,18 @@ const sharedProjects: Omit<ProjectItem, "category" | "shortDescription" | "summa
   {
     title: "Casaleo",
     year: "2024",
-    technologies: ["Angular", "Ionic", "Firebase", "UX/UI"],
+    technologies: ["Angular", "Ionic", "Capacitor", "Firebase", "Firestore"],
     href: "https://jgarcia311999.github.io/",
     preview: "https://jgarcia311999.github.io/",
-    image: "/projects/casaleo.svg",
+    image: "/projects/casaleo.png",
+  },
+  {
+    title: "Portfolio anterior",
+    year: "2024",
+    technologies: ["Portfolio", "Frontend", "Contenido"],
+    href: "https://jgarcia311999.github.io/",
+    preview: "https://jgarcia311999.github.io/",
+    image: "/projects/portfolio-anterior.png",
   },
   {
     title: "Estima't",
@@ -122,14 +130,6 @@ const sharedProjects: Omit<ProjectItem, "category" | "shortDescription" | "summa
     href: "https://jgarcia311999.github.io/",
     preview: "https://jgarcia311999.github.io/",
     image: "/projects/estimat.svg",
-  },
-  {
-    title: "Portfolio anterior",
-    year: "2024",
-    technologies: ["Portfolio", "Frontend", "Contenido"],
-    href: "https://jgarcia311999.github.io/",
-    preview: "https://jgarcia311999.github.io/",
-    image: "/projects/portfolio-anterior.svg",
   },
 ];
 
@@ -211,10 +211,10 @@ export const contentByLocale: Record<Locale, LocalizedContent> = {
         {
           ...sharedProjects[3],
           category: "app web",
-          shortDescription: "Aplicación para mejorar la comunicación y la gestión de eventos dentro del entorno fallero, construida con Angular, Ionic y Firebase.",
-          summary: "Aplicación orientada a resolver organización y comunicación en un contexto muy concreto, buscando claridad operativa y acceso rápido.",
-          problem: "Había una necesidad real de centralizar avisos, gestión y eventos en un entorno con mucha coordinación manual.",
-          role: "UX/UI, frontend y estructura funcional del producto.",
+          shortDescription: "Aplicación para mejorar la comunicación y la gestión de eventos dentro del entorno fallero, construida con Angular, Ionic, Capacitor y Firebase.",
+          summary: "Aplicación orientada a centralizar organización, comunicación y acceso rápido a la información en un contexto fallero, con base web y despliegue preparado para app.",
+          problem: "Había una necesidad real de unificar avisos, gestión y eventos en un entorno con mucha coordinación manual y varios flujos de uso.",
+          role: "UX/UI, frontend con Angular e Ionic, integración con Capacitor y estructura de datos sobre Firebase y Firestore.",
         },
         {
           ...sharedProjects[4],
@@ -365,10 +365,10 @@ export const contentByLocale: Record<Locale, LocalizedContent> = {
         {
           ...sharedProjects[3],
           category: "app web",
-          shortDescription: "Aplicació per a millorar la comunicació i la gestió d'esdeveniments dins l'entorn faller, construïda amb Angular, Ionic i Firebase.",
-          summary: "Aplicació orientada a resoldre organització i comunicació en un context molt concret, buscant claredat operativa i accés ràpid.",
-          problem: "Hi havia una necessitat real de centralitzar avisos, gestió i esdeveniments en un entorn amb molta coordinació manual.",
-          role: "UX/UI, frontend i estructura funcional del producte.",
+          shortDescription: "Aplicació per a millorar la comunicació i la gestió d'esdeveniments dins l'entorn faller, construïda amb Angular, Ionic, Capacitor i Firebase.",
+          summary: "Aplicació orientada a centralitzar organització, comunicació i accés ràpid a la informació en un context faller, amb base web i desplegament preparat per a app.",
+          problem: "Hi havia una necessitat real d'unificar avisos, gestió i esdeveniments en un entorn amb molta coordinació manual i diversos fluxos d'ús.",
+          role: "UX/UI, frontend amb Angular i Ionic, integració amb Capacitor i estructura de dades sobre Firebase i Firestore.",
         },
         {
           ...sharedProjects[4],
