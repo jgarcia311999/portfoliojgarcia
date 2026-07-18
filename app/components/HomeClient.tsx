@@ -11,6 +11,7 @@ import { Hero } from "./Hero";
 import { Statement } from "./Statement";
 import { Services } from "./Services";
 import { Portfolio } from "./Portfolio";
+import { GraphicDesign } from "./GraphicDesign";
 import { Testimonials } from "./Testimonials";
 import { About } from "./About";
 import { Footer } from "./Footer";
@@ -68,6 +69,7 @@ export function HomeClient({
         <Statement locale={locale} />
         <Services locale={locale} />
         <Portfolio locale={locale} />
+        <GraphicDesign locale={locale} />
         <Testimonials locale={locale} />
         <About locale={locale} />
       </main>
