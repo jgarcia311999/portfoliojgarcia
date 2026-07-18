@@ -127,6 +127,7 @@
 
 html {
   scroll-behavior: auto;
+  overflow-x: clip;
 }
 
 body {
@@ -136,7 +137,7 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-size: var(--fs-base);
   line-height: var(--lh-body);
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   transition: background 0.5s ease, color 0.3s ease;
 }
@@ -608,6 +609,7 @@ section:not(.hero) {
 .statement-section {
   min-height: 280vh;
   background: var(--statement-bg);
+  overflow-x: clip;
 }
 
 .statement-section::before {
@@ -751,6 +753,7 @@ section:not(.hero) {
 .portfolio-section {
   height: 660vh;
   background: transparent;
+  overflow-x: clip;
 }
 
 .portfolio-sticky {
@@ -1533,7 +1536,7 @@ section:not(.hero) {
 
 .about-highlights {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   margin-top: 28px;
 }
@@ -1795,6 +1798,10 @@ section:not(.hero) {
     display: none;
   }
 
+  .cursor-glow {
+    display: none;
+  }
+
   .statement-line {
     font-size: clamp(28px, 7vw, 44px);
   }
@@ -1903,10 +1910,105 @@ section:not(.hero) {
     margin-bottom: 30px;
   }
 
-  .menu-tools {
-    top: 84px;
+  .menu-overlay {
+    align-items: stretch;
+    padding: 92px 24px 40px;
+    overflow-y: auto;
+  }
+
+  .menu-close {
+    top: 22px;
     right: 24px;
-    width: min(calc(100% - 48px), 360px);
+    font-size: 12px;
+  }
+
+  .menu-main {
+    order: 2;
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .menu-nav {
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .menu-link {
+    font-size: clamp(40px, 12vw, 64px);
+    line-height: 0.98;
+  }
+
+  .menu-cta {
+    font-size: 18px;
+    padding-bottom: 12px;
+  }
+
+  .menu-tools {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: 1;
+    width: 100%;
     max-width: none;
+    margin-bottom: 28px;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .menu-tools-label {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .palette-card {
+    align-items: stretch;
+  }
+
+  .palette-trigger {
+    justify-content: space-between;
+    padding: 10px 12px 10px 14px;
+  }
+
+  .palette-trigger-label {
+    text-align: left;
+  }
+
+  .palette-panel {
+    transform-origin: top center;
+  }
+
+  .palette-panel-inner {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .palette-panel-list {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .palette-detail-row {
+    justify-content: flex-start;
+  }
+
+  .palette-detail-hex,
+  .palette-detail-use {
+    text-align: left;
+  }
+
+  .locale-switch {
+    margin-top: 0;
+    align-items: flex-start;
+  }
+
+  .locale-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .locale-button {
+    min-width: 56px;
   }
 }

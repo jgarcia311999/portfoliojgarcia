@@ -15,7 +15,7 @@ export function About({ locale }: { locale: Locale }) {
           <h2 className="section-title section-title-accent">{content.title}</h2>
           <p className="about-intro">{content.intro}</p>
           <p className="about-meta">{content.meta}</p>
-          <p className="about-note">{content.note}</p>
+          {content.note ? <p className="about-note">{content.note}</p> : null}
           <div className="about-highlights">
             {content.highlights.map((item) => (
               <article key={item.title} className="about-highlight-card">

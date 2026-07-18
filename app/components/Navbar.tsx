@@ -92,24 +92,6 @@ export function Navbar({
           <span>{copy.nav.closeMenu}</span>
         </button>
 
-        <div className="menu-main menu-main-right">
-          <ul className="menu-nav">
-            {links.map((link) => (
-              <li key={link.href}>
-                <a href={link.href} className="menu-link" onClick={closeMenu}>
-                  <span className="slash">/</span>
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <a href="mailto:hola@jgarcia3199.dev" className="menu-cta" onClick={closeMenu}>
-            <span>{copy.nav.talk}</span>
-            <span aria-hidden>→</span>
-          </a>
-        </div>
-
         <div className="menu-tools menu-tools-right" onMouseLeave={() => setPaletteOpen(false)}>
           <p className="menu-tools-label">{paletteLabel}</p>
           <div
@@ -118,7 +100,12 @@ export function Navbar({
             onFocus={() => setPaletteOpen(true)}
             onBlur={() => setPaletteOpen(false)}
           >
-            <button type="button" className="palette-trigger" aria-expanded={paletteOpen}>
+            <button
+              type="button"
+              className="palette-trigger"
+              aria-expanded={paletteOpen}
+              onClick={() => setPaletteOpen((value) => !value)}
+            >
               <span className="palette-trigger-label">{paletteCompact}</span>
               <div className="palette-swatches" aria-hidden>
                 {PALETTE_CARD.swatches.map((item) => (
@@ -166,6 +153,24 @@ export function Navbar({
               </button>
             </div>
           </div>
+        </div>
+
+        <div className="menu-main menu-main-right">
+          <ul className="menu-nav">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="menu-link" onClick={closeMenu}>
+                  <span className="slash">/</span>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <a href="mailto:hola@jgarcia3199.dev" className="menu-cta" onClick={closeMenu}>
+            <span>{copy.nav.talk}</span>
+            <span aria-hidden>→</span>
+          </a>
         </div>
       </div>
     </>

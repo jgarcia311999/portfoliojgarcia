@@ -381,7 +381,7 @@ export const contentByLocale: Record<Locale, LocalizedContent> = {
       title: "una forma de construir.",
       intro: "Soy Jesús García. Me gusta moverme entre frontend, diseño y producto, sobre todo cuando una idea necesita pasar de boceto a algo usable y con criterio visual.",
       meta: "He ido mezclando desarrollo, interfaces, apps y experimentos propios hasta acabar en un punto bastante híbrido: me interesa tanto cómo se ve una cosa como cómo se monta por dentro.",
-      note: "Ahora mismo me tira especialmente crear productos web, probar ideas rápido y usar IA aplicada como una herramienta más del proceso, no como atajo.",
+      note: "",
       highlights: [
         {
           label: "Lo que hago",
@@ -392,11 +392,6 @@ export const contentByLocale: Record<Locale, LocalizedContent> = {
           label: "Cómo trabajo",
           title: "Diseño, código y producto juntos",
           body: "Suelo pensar las piezas a la vez: experiencia, implementación y decisiones de producto, para no separar demasiado unas de otras.",
-        },
-        {
-          label: "Ahora mismo",
-          title: "Apps, webs y pequeñas automatizaciones",
-          body: "Estoy cómodo construyendo producto digital y explorando IA aplicada cuando ayuda a acelerar sin vaciar el criterio.",
         },
       ],
       panelTitle: "Diseño, código y producto en el mismo sitio.",
@@ -656,7 +651,7 @@ export const contentByLocale: Record<Locale, LocalizedContent> = {
       title: "una manera de construir.",
       intro: "Soc Jesús García. M'agrada moure'm entre frontend, disseny i producte, sobretot quan una idea necessita passar d'esbós a una cosa usable i amb criteri visual.",
       meta: "He anat barrejant desenvolupament, interfícies, apps i experiments propis fins acabar en un punt prou híbrid: m'interessa tant com es veu una cosa com com es munta per dins.",
-      note: "Ara mateix em tira especialment crear productes web, provar idees ràpid i usar IA aplicada com una ferramenta més del procés, no com a drecera.",
+      note: "",
       highlights: [
         {
           label: "El que faig",
@@ -667,11 +662,6 @@ export const contentByLocale: Record<Locale, LocalizedContent> = {
           label: "Com treballe",
           title: "Disseny, codi i producte junts",
           body: "Solc pensar les peces alhora: experiència, implementació i decisions de producte, per a no separar massa unes de les altres.",
-        },
-        {
-          label: "Ara mateix",
-          title: "Apps, webs i xicotetes automatitzacions",
-          body: "Estic còmode construint producte digital i explorant IA aplicada quan ajuda a accelerar sense buidar el criteri.",
         },
       ],
       panelTitle: "Disseny, codi i producte en el mateix lloc.",
